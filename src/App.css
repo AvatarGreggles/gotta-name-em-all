@@ -1,38 +1,322 @@
+* {
+  box-sizing: border-box;
+}
+
+html {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.LandingPage,
+.GameOver {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  background: black;
+  height: 100vh;
   color: white;
+  justify-content: center;
+  align-items: center;
 }
 
-.App-link {
-  color: #61dafb;
+.GameOver-Heading {
+  opacity: 0;
+  font-size: 3rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.fade-in {
+  opacity: 1;
+  animation-name: fadeInOpacity;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in;
+  animation-duration: 2s;
+}
+
+@keyframes fadeInOpacity {
+  0% {
+    opacity: 0;
   }
-  to {
+  100% {
+    opacity: 1;
+  }
+}
+
+.LandingPage button {
+  margin: 1rem;
+  padding: 1rem 2rem;
+  background: black;
+  color: white;
+  font-size: 1rem;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 300px;
+}
+
+h1.LandingPage-Heading {
+  font-size: 5rem;
+}
+
+.Score {
+  font-size: 2rem;
+}
+
+input {
+  height: 30px;
+  width: 300px;
+  font-weight: bold;
+  font-size: 2rem;
+  text-align: center;
+  padding: 1.5rem;
+  border-radius: 20px;
+  outline: none;
+}
+
+.Header {
+  background: black;
+  color: white;
+  padding: 0 1rem;
+  position: fixed;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  max-height: 125px;
+  overflow: hidden;
+}
+
+.Logo {
+  background-image: url("./Images/logo.png");
+  background-size: 175px;
+  background-repeat: no-repeat;
+  min-height: 175px;
+  width: 175px;
+  margin-top: -1rem;
+}
+
+.Player {
+  margin: 1rem;
+  display: flex;
+  width: 50%;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.Timer {
+  font-size: 3rem;
+}
+
+.Timer__Controls {
+  display: flex;
+}
+
+.Timer__Controls button {
+  margin: 0.25rem;
+  padding: 0.25rem 1rem;
+  background: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 100px;
+}
+
+.Container {
+  width: 100vw;
+  height: 100vh;
+  overflow-y: scroll;
+}
+
+.Pokedex {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 2800px;
+  margin-top: 10rem;
+  margin-left: 1rem;
+}
+
+.Region {
+  background: black;
+  color: white;
+  font-weight: bold;
+  border: 1px solid black;
+  width: 10%;
+  margin-bottom: 0.25rem;
+  padding: 0.1rem;
+  border-radius: 5px;
+  height: 25px;
+}
+
+.Pokemon {
+  border: 1px solid black;
+  width: 10%;
+  display: flex;
+  margin-right: 1rem;
+  margin-bottom: 0.25rem;
+  height: 25px;
+  border-radius: 5px;
+}
+
+.Pokemon--Display {
+  border: 2px solid green;
+  width: 10%;
+  display: flex;
+  margin-right: 1rem;
+  margin-bottom: 0.25rem;
+  height: 25px;
+}
+
+.Pokemon__ID {
+  background: black;
+  color: white;
+  padding: 0.25rem;
+  width: 20%;
+  font-size: 0.5rem;
+}
+
+.Pokemon__ID--Display {
+  background: green;
+  color: white;
+  padding: 0.25rem;
+  width: 20%;
+  font-size: 0.5rem;
+}
+
+.Pokemon__Name {
+  padding: 0 0.5rem;
+  width: 100%;
+}
+
+.Spin {
+  -webkit-animation: spin 4s linear infinite;
+  -moz-animation: spin 4s linear infinite;
+  animation: spin 4s linear infinite;
+}
+
+@-moz-keyframes spin {
+  100% {
+    -moz-transform: rotate(360deg);
+  }
+}
+@-webkit-keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+@keyframes spin {
+  100% {
+    -webkit-transform: rotate(360deg);
     transform: rotate(360deg);
   }
+}
+
+.modal-outer {
+  display: grid;
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  /* Hide this modal until we need it */
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.Fire-Background {
+  background: hsla(9, 98%, 48%, 0.7);
+}
+
+.Water-Background {
+  background: hsla(197, 98%, 48%, 0.7);
+}
+
+.Grass-Background {
+  background: hsla(143, 98%, 48%, 0.7);
+}
+
+.Normal-Background {
+  background: hsla(221, 44%, 92%, 0.7);
+}
+
+.Ghost-Background {
+  background: hsla(273, 49%, 37%, 0.7);
+}
+
+.Ground-Background {
+  background: hsla(32, 75%, 50%, 0.7);
+}
+
+.Flying-Background {
+  background: hsla(194, 59%, 65%, 0.7);
+}
+
+.Poison-Background {
+  background: hsla(283, 98%, 48%, 0.7);
+}
+
+.Steel-Background {
+  background: hsla(150, 2%, 49%, 0.7);
+}
+
+.Dragon-Background {
+  background: hsla(251, 90%, 55%, 0.7);
+}
+
+.Rock-Background {
+  background: hsla(29, 75%, 31%, 0.7);
+}
+
+.Fairy-Background {
+  background: hsla(293, 73%, 68%, 0.7);
+}
+
+.Bug-Background {
+  background: hsla(143, 77%, 35%, 0.7);
+}
+
+.Ice-Background {
+  background: hsla(187, 79%, 78%, 0.7);
+}
+
+.Electric-Background {
+  background: hsla(59, 58%, 59%, 0.7);
+}
+
+.Fighting-Background {
+  background: hsla(17, 86%, 57%, 0.7);
+}
+
+.Dark-Background {
+  background: hsla(198, 59%, 7%, 0.7);
+}
+
+.Psychic-Background {
+  background: hsla(308, 96%, 46%, 0.7);
+}
+
+.modal-outer.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.modal-inner {
+  max-width: 600px;
+  min-width: 400px;
+  padding: 2rem;
+  border-radius: 5px;
+  min-height: 200px;
+  background: white;
+  transform: translateX(-200%);
+  transition: transform 0.5s;
+  border: 10px solid white;
+  box-shadow: 0 2px 0 3px black, inset 0 5px 0 1px black, 0 0 0 5px black,
+    inset 0 0 0 3px black;
+}
+
+.modal-outer.open .modal-inner {
+  transform: translateX(0);
 }
