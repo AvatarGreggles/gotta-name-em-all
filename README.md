@@ -4,31 +4,31 @@ This project was built following a couple of weeks of studying javascript concep
 
 Some of the things I studied were refreshers but below is a list of things I learned which I worked to implement in this project. 
 
-[x] - Implicit return vs Explicit return
-[x] - Toggle active and inactive classes
-[x] - using element.closest() to find nearest parent element to a specified element
-[x] - Using element.querySelectorAll()
-[x] - Adding and removing event listeners
-[x] - Using a div as a button
-[x] - Using keycodes for events
-[x] - CSS animations 
-[x] - Input event handlers
-[x] - Array.map()
-[x] - Array.filter()
-[x] - Template literals
-[x] - Using React Hooks
-[x] - Fetching from an API
+- Implicit return vs Explicit return
+- Toggle active and inactive classes
+- using element.closest() to find nearest parent element to a specified element
+- Using element.querySelectorAll()
+- Adding and removing event listeners
+- Using a div as a button
+- Using keycodes for events
+- CSS animations 
+- Input event handlers
+- Array.map()
+- Array.filter()
+- Template literals
+- Using React Hooks
+- Fetching from an API
 
 Other things I have learned which I have not yet implemented into this project:
 
-[] - default arguments
-[] - setting attributes
-[] - using data attributes
-[] - stopping propogation
-[] - using parseInt() and parseFloat()
-[] - Math.ceil vs Math.floor vs Math.round
-[] - Object.freeze()
-[] - Using Maps
+- default arguments
+- setting attributes
+- using data attributes
+- stopping propogation
+- using parseInt() and parseFloat()
+- Math.ceil vs Math.floor vs Math.round
+- Object.freeze()
+- Using Maps
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
