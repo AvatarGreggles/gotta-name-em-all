@@ -7,6 +7,12 @@ export const PokemonInput = ({ handleInputState, inputState }) => {
   };
 
   return (
-    <input className="NameInput" onChange={handleInput} value={inputState} />
+    <input
+      type="name"
+      className="NameInput"
+      onChange={handleInput}
+      value={inputState}
+      placeholder="Enter a Pokémon name..."
+    />
   );
 };

@@ -99,6 +99,23 @@ input {
   outline: none;
 }
 
+.NameInput::-webkit-input-placeholder {
+  font-size: 1rem;
+}
+
+.NameInput::-moz-placeholder {
+  /* Firefox 19+ */
+  font-size: 1rem;
+}
+.NameInput:-ms-input-placeholder {
+  /* IE 10+ */
+  font-size: 1rem;
+}
+.NameInput:-moz-placeholder {
+  /* Firefox 18- */
+  font-size: 1rem;
+}
+
 .Header {
   background: black;
   color: white;
