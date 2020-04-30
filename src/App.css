@@ -24,7 +24,7 @@ html {
 
 .GameOver-Heading {
   opacity: 0;
-  font-size: 3rem;
+  font-size: 5rem;
 }
 
 .fade-in {
@@ -44,7 +44,8 @@ html {
   }
 }
 
-.LandingPage button {
+.LandingPage button,
+.GameOver button {
   margin: 1rem;
   padding: 1rem 2rem;
   background: black;
@@ -53,6 +54,30 @@ html {
   font-weight: bold;
   border-radius: 5px;
   width: 300px;
+  height: 60px;
+}
+
+.LandingPage button:hover,
+.GameOver button:hover {
+  background: white;
+  color: black;
+  border-radius: 20px;
+  font-size: 1.25rem;
+  transition: 0.5s;
+}
+
+.Results {
+  font-size: 2rem;
+  color: white;
+}
+
+.MissingPokemon {
+  border: 1px solid white;
+  padding: 1rem;
+  max-height: 300px;
+  overflow-y: scroll;
+  list-style: none;
+  text-align: left;
 }
 
 h1.LandingPage-Heading {
@@ -84,6 +109,8 @@ input {
   justify-content: space-between;
   max-height: 125px;
   overflow: hidden;
+  align-items: center;
+  z-index: 1;
 }
 
 .Logo {
@@ -118,7 +145,18 @@ input {
   color: white;
   font-weight: bold;
   border-radius: 5px;
-  width: 100px;
+  width: 140px;
+}
+
+.Timer__Controls button:hover {
+  background: white;
+  color: black;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+.Score--Mobile {
+  display: none;
 }
 
 .Container {
@@ -156,22 +194,39 @@ input {
   margin-bottom: 0.25rem;
   height: 25px;
   border-radius: 5px;
+  opacity: 0.25;
 }
 
 .Pokemon--Display {
-  border: 2px solid green;
+  border: 1px solid green;
   width: 10%;
   display: flex;
   margin-right: 1rem;
   margin-bottom: 0.25rem;
   height: 25px;
+  border-radius: 5px;
+  transform: rotateY(360deg);
+  opacity: 1;
+  transition: 1s;
+}
+
+.Pokemon--Missed {
+  border: 1px solid red;
+  width: 10%;
+  display: flex;
+  margin-right: 1rem;
+  margin-bottom: 0.25rem;
+  height: 25px;
+  border-radius: 5px;
+  opacity: 0.5;
+  transition: 1s;
 }
 
 .Pokemon__ID {
   background: black;
   color: white;
   padding: 0.25rem;
-  width: 20%;
+  width: 25%;
   font-size: 0.5rem;
 }
 
@@ -179,13 +234,47 @@ input {
   background: green;
   color: white;
   padding: 0.25rem;
-  width: 20%;
+  width: 25%;
+  font-size: 0.5rem;
+}
+
+.Pokemon__ID--Missed {
+  background: red;
+  color: white;
+  padding: 0.25rem;
+  width: 25%;
   font-size: 0.5rem;
 }
 
 .Pokemon__Name {
-  padding: 0 0.5rem;
   width: 100%;
+  font-size: 75%;
+  padding: 0.25rem;
+}
+
+.Instructions {
+  border: 1px solid white;
+  padding: 1rem;
+  width: 300px;
+  line-height: 1.5rem;
+  border-radius: 5px;
+  font-size: 0.9rem;
+}
+
+.Instructions a {
+  color: white;
+}
+
+.Signature {
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+}
+
+.Signature a {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
 }
 
 .Spin {
@@ -299,6 +388,7 @@ input {
 }
 
 .modal-outer.open {
+  z-index: 2;
   opacity: 1;
   pointer-events: all;
 }
@@ -319,4 +409,93 @@ input {
 
 .modal-outer.open .modal-inner {
   transform: translateX(0);
+}
+
+@media only screen and (max-width: 1350px) {
+  .Pokedex {
+    margin-top: 9rem;
+    flex-direction: row;
+  }
+
+  .Pokemon,
+  .Pokemon--Missed,
+  .Pokemon--Display {
+    width: 23.5%;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .Region {
+    width: 96.5%;
+  }
+}
+
+@media only screen and (max-width: 1047px) {
+  .Logo {
+    display: none;
+  }
+
+  .Region {
+    width: 97%;
+  }
+
+  h1.LandingPage-Heading {
+    font-size: 2.5rem;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .Pokemon,
+  .Pokemon--Missed,
+  .Pokemon--Display {
+    width: 30.33%;
+    margin-right: 0.5rem;
+    margin-bottom: 0.25rem;
+  }
+
+  .Pokedex {
+    flex-direction: row;
+    margin-top: 7rem;
+  }
+
+  .NameInput {
+    width: 80%;
+    height: 15px;
+    font-size: 1rem;
+    padding: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .Region {
+    width: 98%;
+  }
+
+  .Header {
+    justify-content: center;
+    height: 100px;
+    flex-direction: column;
+  }
+
+  .Timer {
+    font-size: 2rem;
+    display: flex;
+  }
+
+  .Timer__Controls button {
+    display: none;
+  }
+
+  .Score {
+    display: none;
+  }
+
+  .Score--Mobile {
+    display: flex;
+    font-size: 2rem;
+  }
+
+  .Player {
+    width: 100%;
+    margin: 0rem;
+  }
 }

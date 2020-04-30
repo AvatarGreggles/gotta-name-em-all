@@ -2,9 +2,7 @@ import React, { useState, useEffect } from "react";
 import { allPokemon } from "../../Data";
 import { Pokemon } from "../Pokemon/Pokemon";
 
-export const Pokedex = ({ pokedex }) => {
-  const [activePokemon, setActivePokemon] = useState();
-
+export const Pokedex = ({ pokedex, gameState }) => {
   //Warn the player before navigating away from the page
   useEffect(() => {
     window.addEventListener("beforeunload", function (e) {
@@ -13,6 +11,49 @@ export const Pokedex = ({ pokedex }) => {
       // Chrome requires returnValue to be set
       e.returnValue = "";
     });
+  }, []);
+
+  useEffect(() => {
+    const pokedexContainer = document.querySelector(".Pokedex");
+    if (allPokemon.length <= 151) {
+      pokedexContainer.style.height = "500px";
+      return;
+    }
+
+    if (allPokemon.length > 151 && allPokemon.length <= 251) {
+      pokedexContainer.style.height = "850px";
+      return;
+    }
+
+    if (allPokemon.length > 251 && allPokemon.length <= 386) {
+      pokedexContainer.style.height = "1300px";
+      return;
+    }
+
+    if (allPokemon.length > 387 && allPokemon.length <= 493) {
+      pokedexContainer.style.height = "1700px";
+      return;
+    }
+
+    if (allPokemon.length > 494 && allPokemon.length <= 649) {
+      pokedexContainer.style.height = "2200px";
+      return;
+    }
+
+    if (allPokemon.length > 650 && allPokemon.length <= 721) {
+      pokedexContainer.style.height = "2500px";
+      return;
+    }
+
+    if (allPokemon.length > 722 && allPokemon.length <= 809) {
+      pokedexContainer.style.height = "2800px";
+      return;
+    }
+
+    if (allPokemon.length > 810 && allPokemon.length <= 890) {
+      pokedexContainer.style.height = "3100px";
+      return;
+    }
   }, []);
 
   const renderRegion = (id) => {
@@ -40,26 +81,10 @@ export const Pokedex = ({ pokedex }) => {
 
   return (
     <div className="Pokedex">
-      <div className="modal-outer">
-        <div className="modal-inner">
-          {activePokemon ? (
-            <div className="Modal-Pokemon">
-              <div className="Modal-Pokemon__Name">{activePokemon.name}</div>
-              <div className="Modal-Pokemon__Sprite">
-                <img src={activePokemon.sprites.front_default} />
-              </div>
-            </div>
-          ) : null}
-        </div>
-      </div>
       {allPokemon.map((pokemon, index) => (
         <React.Fragment key={index}>
           {renderRegion(pokemon.id)}
-          <Pokemon
-            pokemon={pokemon}
-            pokedex={pokedex}
-            setActivePokemon={setActivePokemon}
-          />
+          <Pokemon pokemon={pokemon} pokedex={pokedex} gameState={gameState} />
         </React.Fragment>
       ))}
     </div>
