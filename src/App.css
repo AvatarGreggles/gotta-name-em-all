@@ -92,7 +92,7 @@ input {
   height: 30px;
   width: 300px;
   font-weight: bold;
-  font-size: 2rem;
+  font-size: 1.5rem;
   text-align: center;
   padding: 1.5rem;
   border-radius: 20px;
@@ -165,7 +165,38 @@ input {
   width: 140px;
 }
 
-.Timer__Controls button:hover {
+.Btn-Active {
+  margin: 0.25rem;
+  padding: 1rem;
+  background: black;
+  color: white;
+  font-weight: bold;
+  border-radius: 5px;
+  width: 140px;
+}
+
+.Btn-Active:hover {
+  background: white;
+  color: black;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+button.react-share__ShareButton {
+  margin: 0.25rem !important;
+  padding: 0.25rem 1rem !important;
+  background: black !important;
+  color: white !important;
+  font-weight: bold !important;
+  border-radius: 5px !important;
+  border: 1px solid white !important;
+}
+
+.Btn-Disabled {
+  opacity: 0.5;
+}
+
+.Timer__Controls button.Btn-Active:hover {
   background: white;
   color: black;
   border-radius: 20px;

@@ -11,13 +11,13 @@ export const Timer = ({ expiryTimestamp, resetGame, endGame, gameState }) => {
 
   useEffect(() => {
     const logo = document.querySelector(".Logo");
-    const nameInput = document.querySelector(".NameInput");
+    //const nameInput = document.querySelector(".NameInput");
     if (!isRunning) {
       logo.classList.remove("Spin");
-      nameInput.disabled = true;
+      //nameInput.disabled = true;
     } else {
       logo.classList.add("Spin");
-      nameInput.disabled = false;
+      //nameInput.disabled = false;
     }
   });
 
@@ -34,13 +34,26 @@ export const Timer = ({ expiryTimestamp, resetGame, endGame, gameState }) => {
         {gameState !== "End" ? (
           <React.Fragment>
             {isRunning ? (
-              <button onClick={pause}>Pause</button>
+              <React.Fragment>
+                <button className="Btn-Active" onClick={pause}>
+                  Pause
+                </button>
+                <button className="Btn-Disabled">Give Up!</button>
+              </React.Fragment>
             ) : (
-              <button onClick={resume}>Play</button>
+              <React.Fragment>
+                <button className="Btn-Active" onClick={resume}>
+                  Play
+                </button>
+                <button className="Btn-Active" onClick={endGame}>
+                  Give Up!
+                </button>
+              </React.Fragment>
             )}
           </React.Fragment>
         ) : (
           <button
+            className="Btn-Active"
             onClick={() => {
               const time = new Date();
               time.setSeconds(time.getSeconds() + 3600);

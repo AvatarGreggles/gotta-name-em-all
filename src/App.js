@@ -4,6 +4,7 @@ import { Pokedex } from "./Components/Pokedex/Pokedex";
 import { Score } from "./Components/Score/Score";
 import { PokemonInput } from "./Components/PokemonInput/PokemonInput";
 import { Timer } from "./Components/Timer/Timer";
+import { Results } from "./Components/Results/Results";
 import { LandingPage } from "./Components/LandingPage/LandingPage";
 import "./App.css";
 
@@ -70,6 +71,10 @@ const App = () => {
     setGameState("End");
   };
 
+  const goToResultsScreen = () => {
+    setGameState("Results");
+  };
+
   //Will add whatever number which is passed in to the score
   const addScore = (scoreToAdd) => {
     setScore(score + scoreToAdd);
@@ -77,7 +82,7 @@ const App = () => {
 
   return (
     <div className="App">
-      {gameState !== "Initial" ? (
+      {gameState !== "Initial" && gameState !== "Results" ? (
         <React.Fragment>
           <div className="Header">
             <div className="Logo Spin"></div>
@@ -90,18 +95,26 @@ const App = () => {
               />
               <Score score={score} />
             </div>
-            <PokemonInput
-              pokedex={pokedex}
-              handleInputState={handleInputState}
-              inputState={inputState}
-            />
+            {gameState !== "End" ? (
+              <PokemonInput
+                pokedex={pokedex}
+                handleInputState={handleInputState}
+                inputState={inputState}
+              />
+            ) : (
+              <button className="Btn-Active" onClick={goToResultsScreen}>
+                Go To Results ->
+              </button>
+            )}
           </div>
           <div className="Container">
             <Pokedex pokedex={pokedex} gameState={gameState} />
           </div>
         </React.Fragment>
-      ) : (
+      ) : gameState !== "Results" ? (
         <LandingPage activeGame={activeGame} />
+      ) : (
+        <Results resetGame={resetGame} score={score} />
       )}
     </div>
   );
