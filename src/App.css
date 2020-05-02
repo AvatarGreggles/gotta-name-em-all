@@ -184,12 +184,19 @@ input {
 
 button.react-share__ShareButton {
   margin: 0.25rem !important;
-  padding: 0.25rem 1rem !important;
+  padding: 1rem !important;
   background: black !important;
   color: white !important;
   font-weight: bold !important;
-  border-radius: 5px !important;
+  border-radius: 5px;
   border: 1px solid white !important;
+}
+
+button.react-share__ShareButton:hover {
+  background: white !important;
+  color: black !important;
+  border-radius: 20px;
+  transition: 0.5s;
 }
 
 .Btn-Disabled {
@@ -300,17 +307,90 @@ button.react-share__ShareButton {
   padding: 0.25rem;
 }
 
-.Instructions {
+.Leaderboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border: 1px solid white;
   padding: 1rem;
-  width: 300px;
+  width: 400px;
+  height: 320px;
   line-height: 1.5rem;
-  border-radius: 5px;
   font-size: 0.9rem;
+  color: black;
+  border-radius: 2px;
+  padding: 8px;
+  background: white;
+  box-shadow: 0 1px 0 1px black, inset 0 1px 0 1px black, 0 0 0 1px black,
+    inset 0 0 0 1px black;
+}
+
+.Ranking {
+  display: flex;
+  width: 100%;
+}
+
+.Ranking-Place {
+  width: 33%;
+}
+
+.Ranking-Name {
+  width: 33%;
+}
+
+.Ranking-Score {
+  width: 33%;
+}
+
+.Instructions {
+  position: relative;
+  display: flex;
+  border: 1px solid white;
+  padding: 1rem;
+  width: 400px;
+  height: 320px;
+  line-height: 1.5rem;
+  font-size: 0.9rem;
+  color: black;
+  border-radius: 2px;
+  padding: 8px;
+  background: white;
+  box-shadow: 0 1px 0 1px black, inset 0 1px 0 1px black, 0 0 0 1px black,
+    inset 0 0 0 1px black;
+}
+
+.LandingPage label {
+  margin: 2rem 0 0.5rem;
+}
+
+.Instructions > i {
+  width: 0;
+  height: 0;
+  border: 5px solid transparent;
+  border-top-color: black;
+  margin-top: 23px;
+  animation: bounce 0.5s ease-in-out infinite alternate;
+  float: right;
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+
+@keyframes bounce {
+  from {
+    bottom: 10px;
+  }
+  to {
+    bottom: 15px;
+  }
 }
 
 .Instructions a {
-  color: white;
+  color: black;
+}
+
+.PokemonLogo {
+  width: 90%;
 }
 
 .Signature {

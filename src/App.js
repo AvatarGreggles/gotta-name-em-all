@@ -6,14 +6,66 @@ import { PokemonInput } from "./Components/PokemonInput/PokemonInput";
 import { Timer } from "./Components/Timer/Timer";
 import { Results } from "./Components/Results/Results";
 import { LandingPage } from "./Components/LandingPage/LandingPage";
+import { FacebookShareButton } from "react-share";
 import "./App.css";
 
+import Firebase from "firebase";
+
+import { useFirebaseAuth, AuthProvider } from "@use-firebase/auth";
+
 const App = () => {
+  const {
+    user,
+    isSignedIn,
+    signIn,
+    signInError,
+    createAuthProvider,
+  } = useFirebaseAuth();
+
+  const onSignIn = (authProvider) => {
+    const provider = createAuthProvider(authProvider);
+    signIn(provider, { method: "signInWithPopup" });
+  };
+
+  const [playerName, setPlayerName] = useState("");
+  const [prevRecord, setPrevRecord] = useState({ score: 0 });
   const [pokedex, setPokedex] = useState(allPokemon);
   const [score, setScore] = useState(0);
   //Initial is the main menu, Playing is while the game is currently playing, End is when the timer is up and results are shown
   const [gameState, setGameState] = useState("Initial");
   const [inputState, setInputState] = useState("");
+
+  useEffect(() => {
+    onSignIn(AuthProvider.ANONYMOUS);
+  }, []);
+
+  const chooseDisplayName = (event) => {
+    if (gameState === "Active" && event.currentTarget.value === "") {
+      setPlayerName(user.displayName);
+    } else {
+      setPlayerName(event.currentTarget.value);
+    }
+  };
+
+  const getUserData = () => {
+    let ref = Firebase.database().ref("/Leaderboard/User" + user.uid);
+    ref.on("value", (snapshot) => {
+      const prevResults = snapshot.val();
+      prevResults
+        ? setPrevRecord(prevResults)
+        : setPrevRecord({ name: playerName, score: 0 });
+    });
+  };
+
+  const writeUserData = () => {
+    console.log(prevRecord.score);
+    Firebase.database()
+      .ref("Leaderboard/User" + user.uid)
+      .set({
+        name: playerName !== "" ? playerName : user.displayName,
+        score: score > prevRecord.score ? score : prevRecord.score,
+      });
+  };
 
   //Get the current date and then and 1 hour to it, this will be our countdown value
   const time = new Date();
@@ -59,6 +111,7 @@ const App = () => {
     setGameState("Active");
     setPokedex(allPokemon);
     setScore(0);
+    getUserData();
   };
 
   //Things to do when restarting the game
@@ -69,11 +122,12 @@ const App = () => {
   //Things to do when the game ends
   const endGame = () => {
     setGameState("End");
+    writeUserData();
   };
 
-  const goToResultsScreen = () => {
+  /*const goToResultsScreen = () => {
     setGameState("Results");
-  };
+  };*/
 
   //Will add whatever number which is passed in to the score
   const addScore = (scoreToAdd) => {
@@ -95,6 +149,7 @@ const App = () => {
               />
               <Score score={score} />
             </div>
+
             {gameState !== "End" ? (
               <PokemonInput
                 pokedex={pokedex}
@@ -102,9 +157,12 @@ const App = () => {
                 inputState={inputState}
               />
             ) : (
-              <button className="Btn-Active" onClick={goToResultsScreen}>
-                Go To Results ->
-              </button>
+              <FacebookShareButton
+                children="Share Your Results"
+                url="https://gotta-name-em-all.now.sh/"
+                quote={`I scored ${score}/${allPokemon.length} points! Can you do any better?`}
+                hashtag="gottanameemall"
+              />
             )}
           </div>
           <div className="Container">
@@ -112,7 +170,11 @@ const App = () => {
           </div>
         </React.Fragment>
       ) : gameState !== "Results" ? (
-        <LandingPage activeGame={activeGame} />
+        <LandingPage
+          activeGame={activeGame}
+          chooseDisplayName={chooseDisplayName}
+          playerName={playerName}
+        />
       ) : (
         <Results resetGame={resetGame} score={score} />
       )}
