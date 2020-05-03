@@ -9,16 +9,14 @@ export const LandingPage = ({ activeGame, chooseDisplayName, playerName }) => {
 
   return (
     <div className="LandingPage">
-      <h1 className="LandingPage-Heading">
-        <a href="https://fontmeme.com/pokemon-font/">
-          <img
-            className="PokemonLogo"
-            src="https://fontmeme.com/permalink/200501/f614b265853ca7043e4fb95a10b23e30.png"
-            alt="pokemon-font"
-            border="0"
-          />
-        </a>
-      </h1>
+      <a href="https://fontmeme.com/pokemon-font/">
+        <img
+          className="PokemonLogo"
+          src="https://fontmeme.com/permalink/200501/f614b265853ca7043e4fb95a10b23e30.png"
+          alt="pokemon-font"
+          border="0"
+        />
+      </a>
       {!showLeaderboard ? (
         <div className="Instructions">
           <div>
@@ -51,12 +49,14 @@ export const LandingPage = ({ activeGame, chooseDisplayName, playerName }) => {
       )}
       <label>Choose a display name</label>
       <input type="name" value={playerName} onChange={chooseDisplayName} />
-      <button
-        onClick={() => setShowLeaderboard(showLeaderboard ? false : true)}
-      >
-        {showLeaderboard ? "Back" : "View Leaderboard"}
-      </button>
-      <button onClick={() => activeGame()}>Ready!</button>
+      <div className="LandingPageButtons">
+        <button
+          onClick={() => setShowLeaderboard(showLeaderboard ? false : true)}
+        >
+          {showLeaderboard ? "Back" : "Leaderboard"}
+        </button>
+        <button onClick={() => activeGame()}>Ready</button>
+      </div>
       <div className="Signature">
         Made by{" "}
         <a

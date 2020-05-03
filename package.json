@@ -8,12 +8,14 @@
     "@testing-library/user-event": "^7.1.2",
     "@use-firebase/auth": "^0.3.3",
     "firebase": "^5.8.2",
+    "grpc": "^1.24.2",
     "node-sass": "^4.14.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-scripts": "3.4.1",
     "react-share": "^4.1.0",
-    "react-timer-hook": "^2.0.2"
+    "react-timer-hook": "^2.0.2",
+    "yarn": "^1.22.4"
   },
   "scripts": {
     "start": "react-scripts start",

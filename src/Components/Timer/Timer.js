@@ -1,7 +1,13 @@
 import React, { useEffect } from "react";
 import { useTimer } from "react-timer-hook";
 
-export const Timer = ({ expiryTimestamp, resetGame, endGame, gameState }) => {
+export const Timer = ({
+  expiryTimestamp,
+  resetGame,
+  endGame,
+  gameState,
+  pauseGame,
+}) => {
   const { seconds, minutes, isRunning, pause, resume, restart } = useTimer({
     expiryTimestamp,
     onExpire: () => {
@@ -14,12 +20,12 @@ export const Timer = ({ expiryTimestamp, resetGame, endGame, gameState }) => {
     //const nameInput = document.querySelector(".NameInput");
     if (!isRunning) {
       logo.classList.remove("Spin");
-      //nameInput.disabled = true;
+      pauseGame();
     } else {
       logo.classList.add("Spin");
-      //nameInput.disabled = false;
+      pauseGame();
     }
-  });
+  }, [isRunning]);
 
   return (
     <div className="Timer">

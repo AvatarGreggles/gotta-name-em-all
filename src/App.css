@@ -5,47 +5,29 @@
 html {
   margin: 0;
   padding: 0;
+  overflow: hidden;
+}
+
+body {
+  background: black;
 }
 
 .App {
   text-align: center;
+  height: 100vh;
 }
 
-.LandingPage,
-.GameOver {
+.LandingPage {
   display: flex;
   flex-direction: column;
   background: black;
-  height: 100vh;
+  height: 100%;
   color: white;
   justify-content: center;
   align-items: center;
 }
 
-.GameOver-Heading {
-  opacity: 0;
-  font-size: 5rem;
-}
-
-.fade-in {
-  opacity: 1;
-  animation-name: fadeInOpacity;
-  animation-iteration-count: 1;
-  animation-timing-function: ease-in;
-  animation-duration: 2s;
-}
-
-@keyframes fadeInOpacity {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
-
-.LandingPage button,
-.GameOver button {
+.LandingPageButtons button {
   margin: 1rem;
   padding: 1rem 2rem;
   background: black;
@@ -53,31 +35,21 @@ html {
   font-size: 1rem;
   font-weight: bold;
   border-radius: 5px;
-  width: 300px;
+  width: 200px;
   height: 60px;
+  outline: none;
 }
 
-.LandingPage button:hover,
-.GameOver button:hover {
+.LandingPageButtons button:hover {
   background: white;
   color: black;
   border-radius: 20px;
-  font-size: 1.25rem;
   transition: 0.5s;
 }
 
 .Results {
   font-size: 2rem;
   color: white;
-}
-
-.MissingPokemon {
-  border: 1px solid white;
-  padding: 1rem;
-  max-height: 300px;
-  overflow-y: scroll;
-  list-style: none;
-  text-align: left;
 }
 
 h1.LandingPage-Heading {
@@ -218,6 +190,7 @@ button.react-share__ShareButton:hover {
   width: 100vw;
   height: 100vh;
   overflow-y: scroll;
+  background: white;
 }
 
 .Pokedex {
@@ -391,6 +364,7 @@ button.react-share__ShareButton:hover {
 
 .PokemonLogo {
   width: 90%;
+  margin: 1rem;
 }
 
 .Signature {
@@ -587,7 +561,8 @@ button.react-share__ShareButton:hover {
   }
 
   .NameInput {
-    width: 80%;
+    width: 55%;
+    align-self: flex-start;
     height: 15px;
     font-size: 1rem;
     padding: 1rem;
@@ -609,8 +584,19 @@ button.react-share__ShareButton:hover {
     display: flex;
   }
 
+  .Timer__Controls {
+    position: absolute;
+    bottom: 0;
+    right: 10px;
+    width: 40%;
+    justify-content: center;
+  }
+
   .Timer__Controls button {
-    display: none;
+    width: 50%;
+    font-size: 0.5rem;
+    margin: 0.8rem 0.25rem;
+    padding: 0.25rem 0.5rem;
   }
 
   .Score {
@@ -625,5 +611,51 @@ button.react-share__ShareButton:hover {
   .Player {
     width: 100%;
     margin: 0rem;
+  }
+
+  .Instructions {
+    width: 95%;
+    font-size: 0.7rem;
+    height: 250px;
+  }
+
+  .Leaderboard {
+    width: 95%;
+    height: 250px;
+  }
+
+  .Instructions h2 {
+    display: none;
+  }
+
+  .LandingPageButtons {
+    margin-top: 0.75rem;
+  }
+
+  .LandingPageButtons button {
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    font-size: 0.75rem;
+    width: 120px;
+  }
+
+  .LandingPageButtons button:hover {
+    font-size: 0.85rem;
+  }
+
+  .LandingPage label {
+    margin: 1rem 0 0.5rem;
+  }
+
+  .Signature {
+    display: none;
+  }
+
+  .PokemonLogo {
+    margin: 0.5rem;
+  }
+
+  button.react-share__ShareButton {
+    align-self: baseline;
   }
 }

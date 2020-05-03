@@ -34,6 +34,7 @@ const App = () => {
   //Initial is the main menu, Playing is while the game is currently playing, End is when the timer is up and results are shown
   const [gameState, setGameState] = useState("Initial");
   const [inputState, setInputState] = useState("");
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
     onSignIn(AuthProvider.ANONYMOUS);
@@ -58,11 +59,16 @@ const App = () => {
   };
 
   const writeUserData = () => {
-    console.log(prevRecord.score);
+    console.log(score);
     Firebase.database()
       .ref("Leaderboard/User" + user.uid)
       .set({
-        name: playerName !== "" ? playerName : user.displayName,
+        name:
+          playerName !== ""
+            ? playerName
+            : prevRecord.name
+            ? prevRecord.name
+            : user.displayName,
         score: score > prevRecord.score ? score : prevRecord.score,
       });
   };
@@ -73,6 +79,11 @@ const App = () => {
 
   const handleInputState = (currentInput) => {
     setInputState(currentInput);
+  };
+
+  const pauseGame = () => {
+    console.log(isPaused);
+    isPaused ? setIsPaused(false) : setIsPaused(true);
   };
 
   //Callback for when handleInputState is updated
@@ -131,7 +142,7 @@ const App = () => {
 
   //Will add whatever number which is passed in to the score
   const addScore = (scoreToAdd) => {
-    setScore(score + scoreToAdd);
+    setScore((prevState) => prevState + scoreToAdd);
   };
 
   return (
@@ -146,6 +157,7 @@ const App = () => {
                 resetGame={resetGame}
                 endGame={endGame}
                 gameState={gameState}
+                pauseGame={pauseGame}
               />
               <Score score={score} />
             </div>
@@ -155,6 +167,7 @@ const App = () => {
                 pokedex={pokedex}
                 handleInputState={handleInputState}
                 inputState={inputState}
+                isPaused={isPaused}
               />
             ) : (
               <FacebookShareButton
