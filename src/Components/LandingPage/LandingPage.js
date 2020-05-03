@@ -47,8 +47,14 @@ export const LandingPage = ({ activeGame, chooseDisplayName, playerName }) => {
       ) : (
         <Leaderboard />
       )}
-      <label>Choose a display name</label>
-      <input type="name" value={playerName} onChange={chooseDisplayName} />
+      <label>Choose a display name (max 18 char.)</label>
+      <input
+        type="name"
+        value={playerName}
+        onChange={chooseDisplayName}
+        maxLength="18"
+        size="20"
+      />
       <div className="LandingPageButtons">
         <button
           onClick={() => setShowLeaderboard(showLeaderboard ? false : true)}
